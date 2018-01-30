@@ -15,8 +15,8 @@ export CONTAINER=${1}
 #config='{"ha-mode": "all"}'
 #docker-compose exec ${CONTAINER} rabbitmqctl set_policy ha-federation "^federation:*" "${config}"
 
-export EXCHANGE=federated.FooExchange;
-export QUEUE=FooQueue
+export EXCHANGE=custom.FooExchange;
+export QUEUE=custom.FooQueue
 
 docker-compose exec ${CONTAINER} rabbitmqadmin declare exchange name=${EXCHANGE} type=topic
 docker-compose exec ${CONTAINER} rabbitmqadmin declare queue name=${QUEUE} durable=false

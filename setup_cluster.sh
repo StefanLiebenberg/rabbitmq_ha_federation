@@ -9,6 +9,6 @@ set -e
 # install pika
 # docker-compose run --rm admin pip install pika --user
 
-chromium http://$(docker-compose port rabbit-upstream 15672) \
-         http://$(docker-compose port rabbit-downstream-1 15672) \
-         http://$(docker-compose port rabbit-downstream-2 15672);
+#chromium http://$(docker-compose port rabbit-upstream-alt 15672) \
+#         http://$(docker-compose port rabbit-downstream-1 15672) \
+#         http://$(docker-compose port rabbit-downstream-2 15672);

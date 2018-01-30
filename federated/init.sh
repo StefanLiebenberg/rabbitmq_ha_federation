@@ -2,4 +2,4 @@
 
 (sleep 5; setup-federation.sh ) &
 
-eval rabbitmq-server "${@}"
+exec docker-entrypoint.sh rabbitmq-server "${@}"

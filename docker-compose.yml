@@ -7,7 +7,7 @@ services:
     ports:
     - "4369"
     - "5672"
-    - "15672"
+    - 4000:15672
 
   rabbit-downstream-1:
     build: ./federated
@@ -15,9 +15,9 @@ services:
     environment:
     - RABBITMQ_FEDERATED_URI=amqp://guest:guest@rabbit-upstream-alt
     ports:
-    - "4369"
+    - 4369
     - "5672"
-    - "15672"
+    - 4001:15672
 
   rabbit-downstream-2:
     build: ./federated
@@ -27,5 +27,5 @@ services:
     ports:
     - "4369"
     - "5672"
-    - "15672"
+    - 4002:15672
 

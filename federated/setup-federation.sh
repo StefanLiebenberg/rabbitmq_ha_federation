@@ -10,4 +10,4 @@ config='[{"upstream": "upstream"}]'
 docker-entrypoint.sh rabbitmqctl set_parameter federation-upstream-set upstream_federators "${config}"
 
 config='{"federation-upstream-set": "upstream_federators"}'
-docker-entrypoint.sh rabbitmqctl set_policy --apply-to exchanges federation_test ".*" "${config}"
+docker-entrypoint.sh rabbitmqctl set_policy --apply-to exchanges federation_policy ".*" "${config}"
