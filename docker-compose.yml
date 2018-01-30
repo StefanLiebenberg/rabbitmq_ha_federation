@@ -5,8 +5,8 @@ services:
     image: rabbitmq:3-management-alpine
     hostname: rabbit-upstream-alt
     ports:
-    - "4369"
-    - "5672"
+    - 4369
+    - 5672
     - 4000:15672
 
   rabbit-downstream-1:
@@ -14,9 +14,10 @@ services:
     hostname: rabbit-downstream-1
     environment:
     - RABBITMQ_FEDERATED_URI=amqp://guest:guest@rabbit-upstream-alt
+    - RABBITMQ_FEDERATED_PATTERN="custom.*"
     ports:
     - 4369
-    - "5672"
+    - 5672
     - 4001:15672
 
   rabbit-downstream-2:
@@ -24,8 +25,9 @@ services:
     hostname: rabbit-downstream-2
     environment:
     - RABBITMQ_FEDERATED_URI=amqp://guest:guest@rabbit-upstream-alt
+    - RABBITMQ_FEDERATED_PATTERN="custom.*"
     ports:
-    - "4369"
-    - "5672"
+    - 4369
+    - 5672
     - 4002:15672
 
