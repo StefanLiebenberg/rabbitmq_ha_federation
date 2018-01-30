@@ -1,52 +1,31 @@
-version: '2'
+version: '3'
 services:
-  rabbit1:
-    image: rabbitmq:3.6.1-management
-    hostname: rabbit1
-    environment:
-      RABBITMQ_ERLANG_COOKIE: "test_cluster"
+
+  rabbit-upstream-alt:
+    image: rabbitmq:3-management-alpine
+    hostname: rabbit-upstream-alt
     ports:
-      - "4369"
-      - "5672"
-      - "15672"
-  rabbit2:
-    image: rabbitmq:3.6.1-management
-    hostname: rabbit2
+    - "4369"
+    - "5672"
+    - "15672"
+
+  rabbit-downstream-1:
+    build: ./federated
+    hostname: rabbit-downstream-1
     environment:
-      RABBITMQ_ERLANG_COOKIE: "test_cluster"
+    - RABBITMQ_FEDERATED_URI=amqp://guest:guest@rabbit-upstream-alt
     ports:
-      - "4369"
-      - "5672"
-      - "15672"
-  rabbit3:
-    image: rabbitmq:3.6.1-management
-    hostname: rabbit3
+    - "4369"
+    - "5672"
+    - "15672"
+
+  rabbit-downstream-2:
+    build: ./federated
+    hostname: rabbit-downstream-2
     environment:
-      RABBITMQ_ERLANG_COOKIE: "test_cluster"
+    - RABBITMQ_FEDERATED_URI=amqp://guest:guest@rabbit-upstream-alt
     ports:
-      - "4369"
-      - "5672"
-      - "15672"
-  rabbit4:
-    image: rabbitmq:3.6.1-management
-    hostname: rabbit4
-    environment:
-      RABBITMQ_ERLANG_COOKIE: "test_cluster"
-    ports:
-      - "4369"
-      - "5672"
-      - "15672"
-  admin:
-    image: python:2.7
-    working_dir: /exercise
-    environment:
-      PYTHONUSERBASE: /vendor
-    links:
-      - rabbit1
-      - rabbit2
-      - rabbit3
-      - rabbit4
-    volumes:
-      - ./rabbitmqadmin:/bin/rabbitmqadmin
-      - ./exercise.py:/exercise.py
-      - ./vendor:/vendor
+    - "4369"
+    - "5672"
+    - "15672"
+
