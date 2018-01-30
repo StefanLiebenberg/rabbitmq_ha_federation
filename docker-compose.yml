@@ -21,7 +21,7 @@ services:
     - 4001:15672
 
   rabbit-downstream-2:
-    image: slieb/federated-rabbitmq
+    build: ./federated
     hostname: rabbit-downstream-2
     environment:
       RABBITMQ_FEDERATED_URI: amqp://guest:guest@rabbit-upstream-alt
